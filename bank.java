@@ -4,10 +4,29 @@ import dataBank.*;
 
 public class bank {
 
+    static Scanner entrada = new Scanner(System.in);
+
+    public static char escolha(String message) { //método para gerar escolhas binárias
+
+        String strEscolha;
+        char escolha = 's';
+
+        try {
+            do {
+                System.out.print("\n" + message + "? (s/n): ");
+                strEscolha = entrada.nextLine();
+                escolha = strEscolha.charAt(0);
+            } while (escolha != 's' && escolha != 'n');
+        } catch (StringIndexOutOfBoundsException e) { //caso a escolha seja 'pulada' pelo enter
+            entrada.nextLine();
+        }
+        
+        return escolha;
+    }
+
     public static void main(String[] args) {
 
         // variáveis gerais
-        Scanner entrada = new Scanner(System.in);
         int option = 0;
         String senha;
         char menu = 's';
@@ -23,7 +42,7 @@ public class bank {
                     } while(option != 1 && option != 2);
                     break;
                 } catch (InputMismatchException e) {
-                    System.out.println("\n\nDigite apenas números\n");
+                    System.out.println("Digite apenas números");
                     entrada.nextLine();
                 }
             }
@@ -42,14 +61,13 @@ public class bank {
 
                 System.out.println("Seu número de conta é " + client.getNumConta());
     
-                if(Conta.escolha("Deseja entrar na sua conta agora") == 's') Conta.entrar();
+                if(escolha("Deseja entrar na sua conta agora") == 's') Conta.entrar();
             }
 
-            menu = Conta.escolha("Você quer voltar ao menu");
+            menu = escolha("Você quer voltar ao menu");
         }
 
         System.out.println("\n\n\tObrigado por usar meu app de banco! Aceito sugestões\n");
         entrada.close();
     }
-
 }

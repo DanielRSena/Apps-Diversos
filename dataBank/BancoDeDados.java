@@ -53,7 +53,7 @@ public class BancoDeDados {
         return clientFounded;
     }
 
-    public static String[] findPassword(String senha) {
+    public static String[] findPassword(int numBusca, String senha) {
 
         readDataClients(); //atualiza a lista de clientes
 
@@ -66,8 +66,9 @@ public class BancoDeDados {
             String[] partes = linhas.get(i).split(", ");
             dados = partes.clone();
             String senhaCliente = partes[2];
+            String numConta = partes[0];
 
-            if (senhaCliente.equals(senha)) {
+            if (numBusca == Integer.parseInt(numConta) && senhaCliente.equals(senha)) {
                 passwordRight = true;
                 break;
             }

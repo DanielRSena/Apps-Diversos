@@ -33,9 +33,8 @@ public class Client {
         int novaConta;
 
         while (true) { //fará enquanto o número da conta sorteado existir no bd
-
             novaConta = random.nextInt( 999999 - 000000 + 1) - 000000; //isso faz gerar números de 6 dígitos
-            if(BancoDeDados.findClient(novaConta) == false) break;
+            if(!BancoDeDados.encontrarClientes(novaConta)) break;
         }
 
         return novaConta;

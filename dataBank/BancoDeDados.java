@@ -9,7 +9,7 @@ public class BancoDeDados {
     private static String nomeArquivo = "dataBank\\dataClients.txt"; //local do banco de dados
     private static List<String> linhas = new ArrayList<>(); //faz uma lista com cada cliente
 
-    private static int readDataClients() { // lê o conteúdo do db
+    private static int lerDataClientes() { // lê o conteúdo do db
 
         try {
 
@@ -32,9 +32,9 @@ public class BancoDeDados {
         return 0;
     }
 
-    public static boolean findClient(int numBusca) {
+    public static boolean encontrarClientes(int numBusca) {
 
-        readDataClients(); //faz a atualização dos clientes
+        lerDataClientes(); //faz a atualização dos clientes
 
         boolean clientFounded = false; 
         String clientData = String.valueOf(numBusca); //converte numBusca para String
@@ -53,9 +53,9 @@ public class BancoDeDados {
         return clientFounded;
     }
 
-    public static String[] findPassword(int numBusca, String senha) {
+    public static String[] encontrarSenha(int numBusca, String senha) {
 
-        readDataClients(); //atualiza a lista de clientes
+        lerDataClientes(); //atualiza a lista de clientes
 
         boolean passwordRight = false;
         String dados[] = new String[4];
@@ -98,14 +98,14 @@ public class BancoDeDados {
 
     public static String saveSaldo(String numConta, String newSaldo) {
 
-        readDataClients(); //mantem os dados dos clientes atualizados
+        lerDataClientes(); //mantem os dados dos clientes atualizados
 
         String mensagem = "realizado com sucesso", clientes[], contaCliente, cliente;
 
         try {
 
             StringBuilder stringBuilder = new StringBuilder();
-            readDataClients(); //mantem os dados dos clientes atualizados
+            lerDataClientes(); //mantem os dados dos clientes atualizados
 
             for (int i = 0; i < linhas.size(); i++) {
                 clientes = linhas.get(i).split(", ");
@@ -120,7 +120,7 @@ public class BancoDeDados {
             }
 
             // Reescreve o conteúdo atualizado no arquivo
-            readDataClients();
+            lerDataClientes();
             BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo));
             writer.write(stringBuilder.toString()); //pega os novos dados dos clientes e os sobrepõe no bd
             writer.close(); //fecha o escritor

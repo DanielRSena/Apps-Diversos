@@ -6,7 +6,7 @@ public class bank {
 
     static Scanner entrada = new Scanner(System.in);
 
-    public static char escolha(String message) { //método para gerar escolhas binárias
+    public static char escolha(String message) {
 
         String strEscolha;
         char escolha = 's';
@@ -17,7 +17,7 @@ public class bank {
                 strEscolha = entrada.nextLine();
                 escolha = strEscolha.charAt(0);
             } while (escolha != 's' && escolha != 'n');
-        } catch (StringIndexOutOfBoundsException e) { //caso a escolha seja 'pulada' pelo enter
+        } catch (StringIndexOutOfBoundsException e) {
             entrada.nextLine();
         }
         
@@ -26,7 +26,6 @@ public class bank {
 
     public static void main(String[] args) {
 
-        // variáveis gerais
         int option = 0;
         String senha;
         char menu = 's';

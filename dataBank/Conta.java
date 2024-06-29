@@ -14,7 +14,6 @@ public class Conta {
 
         while (true) { // pega o número da conta
             try {
-
                 System.out.print("\n\tDigite o número da conta: ");
                 numConta = entrada.nextInt();
                 break;
@@ -24,16 +23,16 @@ public class Conta {
             }
         }
 
-        if (BancoDeDados.findClient(numConta) == true) { // se o número da conta existe
+        if (BancoDeDados.encontrarClientes(numConta) == true) {
 
             System.out.print("\n\tDigite a senha: ");
             entrada.nextLine(); // limpa a entrada do teclado, pois o nextInt() já pegou o número da conta e não a senha.
             senha = entrada.nextLine();
 
-            String dadosCliente[] = BancoDeDados.findPassword(numConta, senha); // pega os dados do cliente
+            String dadosCliente[] = BancoDeDados.encontrarSenha(numConta, senha); // pega os dados do cliente
 
-            if (dadosCliente.length == 4) menu(dadosCliente); // se a senha está certa, 'abre' o menu do banco
-            else System.out.println("\n\n\tSenha errada\n"); // se o tamanho do vetor é 1, significa que a senha está errada
+            if (dadosCliente.length == 4) menu(dadosCliente);
+            else System.out.println("\n\n\tLogin ou senha incorretos\n");
         } else System.out.println("\nEsse número de conta não existe\n");
 
         return 0;
